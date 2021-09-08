@@ -46,6 +46,7 @@ export function Send() {
           <input type="number"
             placeholder="amount"
             onChange={onAmountChange}
+            value={amount}
           />
           <button disabled={isLoading}>Send</button>
         </form>
