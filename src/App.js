@@ -5,6 +5,7 @@ import {
     onAccountAvailable,
     viewingKeyManager
 } from '@stakeordie/griptape.js';
+import { Send } from './components/Send';
 
 const decoder = new TextDecoder('utf-8');
 
@@ -61,6 +62,8 @@ function App() {
 
         <button onClick={createViewingKey}>Create VK</button>
         <button onClick={getViewingKey}>Get Key</button>
+
+        <Send/>
       </div>
     );
 }

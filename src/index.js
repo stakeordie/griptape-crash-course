@@ -6,11 +6,16 @@ import reportWebVitals from './reportWebVitals';
 
 import {
     gripApp,
-    getKeplrAccountProvider
+    getKeplrAccountProvider,
+    onAccountChange
 } from '@stakeordie/griptape.js';
 
 const restUrl = 'https://api.holodeck.stakeordie.com';
 const provider = getKeplrAccountProvider();
+
+onAccountChange(() => {
+    window.location.reload();
+});
 
 gripApp(restUrl, provider, () => {
 
