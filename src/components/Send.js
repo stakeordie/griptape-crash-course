@@ -31,6 +31,7 @@ export function Send() {
             console.error(e);
         } finally {
             setIsLoading(false);
+            setAmount(0);
         }
     }
 
