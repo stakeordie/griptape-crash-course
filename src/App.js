@@ -2,18 +2,31 @@ import { useEffect, useState } from 'react';
 import {
   onAccountAvailable,
   viewingKeyManager,
-  coinConvert
+  coinConvert,
+  refContract,
+  createContract,
+  snip20Def
 } from '@stakeordie/griptape.js';
 import { Send } from './components/Send';
 import { Governance } from './components/Governance';
 import { Supply } from './components/Supply';
-import { sefi } from './contracts/sefi';
 
 const decoder = new TextDecoder('utf-8');
 
 function App() {
-  const [tokenName, setTokenName] = useState();
-  const [balance, setBalance]     = useState();
+  const sefi = refContract('sefi');
+
+  const [tokenName, setTokenName]       = useState();
+  const [balance, setBalance]           = useState();
+  const [sscrtBalance, setSscrtBalance] = useState();
+
+  function init() {
+    createContract({
+      id: 'sscrt',
+      at: 'secret1s7c6xp9wltthk5r6mmavql4xld5me3g37guhsx',
+      definition: snip20Def
+    });
+  }
 
   async function getTokenInfo() {
     const res = await sefi.getTokenInfo();
@@ -26,6 +39,13 @@ function App() {
     const res = await sefi.getBalance();
     if (res) {
       setBalance(res.balance.amount);
+    }
+  }
+
+  async function getSscrtBalance() {
+    const res = await refContract('sscrt').getBalance();
+    if (res) {
+      setSscrtBalance(res.balance.amount);
     }
   }
 
@@ -44,8 +64,11 @@ function App() {
   }
 
   useEffect(() => {
+    init();
+
     onAccountAvailable(() => {
       getBalance();
+      getSscrtBalance();
     });
 
     getTokenInfo();
@@ -62,6 +85,9 @@ function App() {
         :
         <div><b>...</b></div>
       }
+      <div>
+        <span><b>SSCRT balance:</b> <span className="number">{coinConvert(sscrtBalance, 6, 'humna', 2)}</span></span>
+      </div>
 
       <br/>
 

@@ -15,16 +15,12 @@ export function Governance() {
     fetchProposals();
   }, [gov]);
 
-  function truncate(str) {
-    return str.substring(0, 128) + '...';
-  }
-
   return (
     <>
       <h3>Governance</h3>
       <ul>
         { proposals.map((it, idx) =>
-          <li key={idx}>{truncate(it.content.value.title)}</li>) }
+          <li key={idx}>{it.content.value.title}</li>) }
       </ul>
     </>
   );

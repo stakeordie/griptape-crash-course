@@ -6,7 +6,6 @@ export function Supply() {
 
   const [total, setTotal] = useState();
 
-
   useEffect(() => {
     async function getTotal() {
       const res = await supply.getTotal();

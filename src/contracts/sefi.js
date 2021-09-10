@@ -1,7 +1,8 @@
 import {
   createContract,
   extendContract,
-  snip20Def
+  snip20Def,
+  ErrorHandler
 } from '@stakeordie/griptape.js';
 
 const sefiDef = {
@@ -26,3 +27,12 @@ export const sefi = createContract({
   at: 'secret12q2c5s5we5zn9pq43l0rlsygtql6646my0sqfm',
   definition: def
 });
+
+export class ServerNotAvailableErrorHandler extends ErrorHandler {
+  constructor(handler) {
+    super(
+      (e) => e.toString().match(/502/ig),
+      handler
+    );
+  }
+}

@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { sefi } from '../contracts/sefi';
+import { sefi, ServerNotAvailableErrorHandler } from '../contracts/sefi';
+import {
+  onContractError,
+  OutOfGasErrorHandler,
+  DefaultErrorHandler
+} from '@stakeordie/griptape.js';
 
 export function Send() {
   const [recipient, setRecipient] = useState('');
@@ -10,6 +15,10 @@ export function Send() {
 
   useEffect(() => {
     setRecipient('secret1vppheqkkzray9ayxusee5fdhde56723f2y0027');
+
+    onContractError(sefi, new ServerNotAvailableErrorHandler(() => setError('This was a 502')))
+    onContractError(sefi, new OutOfGasErrorHandler(() => setError('Out gas error')))
+    onContractError(sefi, new DefaultErrorHandler(() => setError('Default error handler')))
   }, []);
 
   function onRecipientChange(event) {
@@ -25,17 +34,9 @@ export function Send() {
   async function send(event) {
     event.preventDefault();
     if (!recipient || !amount) return;
-    try {
-      setIsLoading(true);
-      await sefi.send(recipient, amount);
-      setSuccess(`${amount} SEFI sent successfully`)
-    } catch (e) {
-      // ignore
-      setError('An error has ocurred');
-    } finally {
-      setAmount(0);
-      setIsLoading(false);
-    }
+    setIsLoading(true);
+    await sefi.send(recipient, amount);
+    setIsLoading(false);
   }
 
   function closeError(event) {
