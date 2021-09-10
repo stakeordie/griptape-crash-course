@@ -1,31 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
 
 import {
-    gripApp,
-    getKeplrAccountProvider,
-    onAccountChange
+  gripApp,
+  getKeplrAccountProvider,
+  onAccountChange
 } from '@stakeordie/griptape.js';
 
 const restUrl = 'https://api.holodeck.stakeordie.com';
 const provider = getKeplrAccountProvider();
 
 onAccountChange(() => {
-    window.location.reload();
+  window.location.reload();
 });
 
 gripApp(restUrl, provider, () => {
 
-    // Bootstrap you app.
-    ReactDOM.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
+  // Bootstrap you app.
+  ReactDOM.render(
+    <React.StrictMode>
+    <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
 
 });
 

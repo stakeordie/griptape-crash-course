@@ -1,13 +1,85 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=PT+Mono&display=swap');
+
+html {
+  font-family: var(--main-font);
+  font-size: 16px;
+
+  --main-font: Montserrat;
+  --number-font: 'PT Mono', monospace;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 1rem;
+  max-width: 360px;
+}
+
+form input {
+  padding: .8rem;
+  border-radius: 4px;
+  border: 1px solid black;
+  font-family: var(--main-font);
+}
+
+form input[type=number] {
+  font-family: var(--number-font);
+}
+
+button, .button {
+  padding: .8rem;
+  background-color: black;
+  color: white;
+  font-family: Montserrat;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #313131;
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+.number {
+  font-family: var(--number-font);
+}
+
+.error {
+  background-color: red;
+  padding: .8rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error a {
+  color: white;
+  text-decoration: none;
+}
+
+.success {
+  background-color: green;
+  padding: .8rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.success a {
+  color: white;
+  text-decoration: none;
 }
