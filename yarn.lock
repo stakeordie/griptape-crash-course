@@ -1554,10 +1554,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stakeordie/griptape.js@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@stakeordie/griptape.js/-/griptape.js-0.4.2.tgz#eeff5f9fd7f9f40836754b106d2532b6461c6d6b"
-  integrity sha512-LCYAk27xNH0CfA1JArbl8cMAOmezbaX1n08Vbm0aDxmRHrowqUni64/Fsc9egmbmUHhKfd/Z281vqrKyzlbVFA==
+"@stakeordie/griptape.js@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@stakeordie/griptape.js/-/griptape.js-0.5.0.tgz#7e1b778f98755e1fadf4a43a2099bcab56b40482"
+  integrity sha512-m04Fa8InLhOqQdDNYueMKfWt5isYG0qPX777PjL+PWH/XxHhiwwbW5e2LVDGZ9rI8cxz0qk3L4AdDyPQvtnhhw==
   dependencies:
     axios "^0.21.1"
     decimal.js "^10.2.1"
